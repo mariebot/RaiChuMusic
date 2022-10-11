@@ -36,43 +36,6 @@ async def _human_time_duration(seconds):
     return ", ".join(parts)
 
 
-@Client.on_message(other_filters2)
-async def start(_, message: Message):
-        await message.reply_text(
-        f"""Hello {message.from_user.mention()}, My name is {BOT_NAME}.
-I'm a telegram streaming bot with some useful features.
-Feel free to add me to your groups.
-        """,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [                   
-                    InlineKeyboardButton(
-                        "Commands & Help ❔", callback_data="cbbasic"
-                    ),
-                ],
-                [
-                    InlineKeyboardButton(
-                        "How to Use Me ❓", callback_data="cbhowtouse"
-                    ),
-                  ],[
-                    InlineKeyboardButton(
-                       "Updates", url=f"https://t.me/{UPDATES_CHANNEL}"
-                    ),
-                    InlineKeyboardButton(
-                       "Support", url=f"https://t.me/{GROUP_SUPPORT}"
-                    )
-                ],[
-                    InlineKeyboardButton(
-                        "➕ Add Me To Your Group ➕",
-                        url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-                    )
-                ]
-            ]
-        ),
-     disable_web_page_preview=True
-    )
-
-
 @Client.on_message(command(["repo", "source"]) & filters.group & ~filters.edited)
 async def help(client: Client, message: Message):
     await message.reply_photo(
